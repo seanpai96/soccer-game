@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4b797a16806b1514390dc3e6decb5965
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 21088
+  packageName: OpenCV for Unity
+  packageVersion: 2.5.7
+  assetPath: Assets/OpenCVForUnity/Plugins/macOS/opencvforunity.bundle/Contents/MacOS/libopencv_img_hash.4.8.0.dylib
+  uploadId: 622758
