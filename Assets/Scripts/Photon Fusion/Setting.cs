@@ -14,9 +14,11 @@ public class Setting : MonoBehaviour, INetworkRunnerCallbacks
     private NetworkPrefabRef playerPrefab;
     [SerializeField]
     private GameMode gameMode;
+    [SerializeField]
+    private NetworkPrefabRef soccer;
 
     private Dictionary<PlayerRef, NetworkObject> playerList = new Dictionary<PlayerRef, NetworkObject>();
-
+    public PlayerSubscriber playerSubscriber;
     private void Start()
     {
         StartGame(gameMode);
@@ -56,20 +58,13 @@ public class Setting : MonoBehaviour, INetworkRunnerCallbacks
     {
         var data = new NetworkInputData();
 
-        if (Input.GetKey(KeyCode.S))
-            data.movementInput += Vector3.forward;
-
-        if (Input.GetKey(KeyCode.W))
-            data.movementInput += Vector3.back;
-
-        if (Input.GetKey(KeyCode.D))
-            data.movementInput += Vector3.left;
-
-        if (Input.GetKey(KeyCode.A))
-            data.movementInput += Vector3.right;
+        data.x = playerSubscriber.x;
+        data.y = playerSubscriber.y;
+        data.z = playerSubscriber.z;
 
         input.Set(data);
     }
+
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason) { }
     public void OnConnectedToServer(NetworkRunner runner) { }

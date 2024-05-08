@@ -1,28 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Robotics.UrdfImporter.Control;
 using UnityEngine;
 using WebSocketSharp;
 
-public class CarROSbridgeSubscriber : MonoBehaviour
+public class PlayerSubscriber : MonoBehaviour
 {
     public ConnectROSBridge connectRos;
-    public string topicName = "/wheel_speed";
+    public string topicName = "/player";
     public string msgType = "std_msgs/msg/Float32MultiArray";
-    public float maxLinearSpeed = 2;        // m/s
-    public float maxRotationalSpeed = 1;
-    public float wheelRadius = 0.07f;       // meters
-    public float trackWidth = 0.288f;       // meters Distance between tyres
-    public float forceLimit = 100;
-    public float damping = 10;
 
-    public float wA1Value = 0.0f;
-    public float wA2Value = 0.0f;
-    public float wA3Value = 0.0f;
-    public float wA4Value = 0.0f;
-
-
-    private RotationDirection direction;
+    public float x = 0.0f;
+    public float y = 0.0f;
+    public float z = 0.0f;
 
     void Start()
     {
@@ -37,10 +26,9 @@ public class CarROSbridgeSubscriber : MonoBehaviour
         {
             RobotNewsMessage message = JsonUtility.FromJson<RobotNewsMessage>(jsonString);
             float[] data = message.msg.data;
-            wA1Value = data[0];
-            wA2Value = data[1];
-            wA3Value = data[2];
-            wA4Value = data[3];
+            x = data[0];
+            y = data[1];
+            z = data[2];
         }
     }
 
@@ -65,7 +53,4 @@ public class CarROSbridgeSubscriber : MonoBehaviour
         public int[] dim;
         public int data_offset;
     }
-
 }
-
-

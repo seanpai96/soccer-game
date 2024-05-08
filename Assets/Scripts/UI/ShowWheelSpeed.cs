@@ -7,18 +7,12 @@ using TMPro;
 public class ShowWheelSpeed : MonoBehaviour
 {
     public GameObject car;
-
     public TMP_InputField leftFrontWheel;
     public TMP_InputField rightFrontWheel;
     public TMP_InputField leftBackWheel;
     public TMP_InputField rightBackWheel;
 
-    private CarROSbridgeSubscriber ros;
-    // Start is called before the first frame update
-    void Start()
-    {
-        ros = car.GetComponent<CarROSbridgeSubscriber>();
-    }
+    public CarROSbridgeSubscriber ros;
 
     // Update is called once per frame
     void Update()
