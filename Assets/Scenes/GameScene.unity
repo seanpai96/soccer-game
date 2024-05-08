@@ -3165,6 +3165,8 @@ MonoBehaviour:
   playerPrefab:
     RawGuidValue: ff777c257d1dd0d4b95eb3d9e805d840
   gameMode: 6
+  soccer:
+    RawGuidValue: 0d359c661f185d74aa62ccc9d8fbe4a8
   playerSubscriber: {fileID: 1221126744}
 --- !u!114 &132114895
 MonoBehaviour:

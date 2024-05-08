@@ -19,6 +19,7 @@ public class Setting : MonoBehaviour, INetworkRunnerCallbacks
 
     private Dictionary<PlayerRef, NetworkObject> playerList = new Dictionary<PlayerRef, NetworkObject>();
     public PlayerSubscriber playerSubscriber;
+
     private void Start()
     {
         StartGame(gameMode);
@@ -27,7 +28,7 @@ public class Setting : MonoBehaviour, INetworkRunnerCallbacks
     async void StartGame(GameMode mode)
     {
         networkRunner.ProvideInput = true;
-
+        
         await networkRunner.StartGame(new StartGameArgs()
         {
             GameMode = mode,
@@ -35,11 +36,13 @@ public class Setting : MonoBehaviour, INetworkRunnerCallbacks
             Scene = SceneManager.GetActiveScene().buildIndex,
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
         });
+        Vector3 spawnPosition = new Vector3(0f, 1f, 32f);
+        networkRunner.Spawn(soccer, spawnPosition, Quaternion.identity, null);
     }
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
-        Vector3 spawnPosition = new Vector3(0f, 1f, 32f);
+        Vector3 spawnPosition = new Vector3(3f, 1f, 32f);
         NetworkObject networkPlayerObject = runner.Spawn(playerPrefab, spawnPosition, Quaternion.identity, player);
 
         playerList.Add(player, networkPlayerObject);
